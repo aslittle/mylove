@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>愿望后台管理 💖</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Comic+Neue:wght@400;700&family=Caveat:wght@400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* 后台管理页面样式 */
+        .admin-container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .admin-title {
+            font-family: 'Bubblegum Sans', cursive;
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+        }
+
+        /* 登录表单样式 */
+        .login-form {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-form h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #ff69b4;
+            margin-bottom: 20px;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 15px 0;
+            border: 2px solid #ffc0cb;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-family: 'Comic Neue', cursive;
+            transition: all 0.3s ease;
+        }
+
+        .login-input:focus {
+            outline: none;
+            border-color: #ff69b4;
+            box-shadow: 0 0 10px rgba(255, 105, 180, 0.2);
+        }
+
+        .login-btn {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-family: 'Comic Neue', cursive;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+        }
+
+        .login-error {
+            color: #ff4444;
+            font-family: 'Comic Neue', cursive;
+            margin-top: 15px;
+            display: none;
+        }
+
+        /* 管理面板样式 */
+        .admin-panel {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+            width: 100%;
+            max-width: 800px;
+            display: none;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #ffc0cb;
+        }
+
+        .admin-header h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #ff69b4;
+            margin: 0;
+        }
+
+        .logout-btn {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-family: 'Comic Neue', cursive;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(255, 105, 180, 0.3);
+        }
+
+        /* 统计信息样式 */
+        .stats-panel {
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .stats-panel h3 {
+            font-family: 'Bubblegum Sans', cursive;
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .stats-count {
+            font-family: 'Bubblegum Sans', cursive;
+            font-size: 3rem;
+            color: #ff1493;
+            font-weight: bold;
+        }
+
+        /* 愿望列表样式 */
+        .wishes-container {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .wish-item {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-left: 4px solid #ff69b4;
+        }
+
+        .wish-content {
+            flex: 1;
+        }
+
+        .wish-text {
+            font-family: 'Caveat', cursive;
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 5px;
+            line-height: 1.4;
+        }
+
+        .wish-date {
+            font-family: 'Comic Neue', cursive;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .delete-btn {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-family: 'Comic Neue', cursive;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 10px;
+        }
+
+        .delete-btn:hover {
+            background: #cc0000;
+            transform: translateY(-1px);
+        }
+
+        /* 空状态样式 */
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-family: 'Caveat', cursive;
+            font-size: 1.5rem;
+        }
+
+        /* 导航标签页样式 */
+        .nav-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #ffc0cb;
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 15px 20px;
+            font-family: 'Comic Neue', cursive;
+            font-size: 1.1rem;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover {
+            color: #ff69b4;
+            background-color: rgba(255, 105, 180, 0.1);
+        }
+
+        .tab-btn.active {
+            color: #ff69b4;
+            border-bottom-color: #ff69b4;
+            font-weight: bold;
+        }
+
+        /* 内容面板样式 */
+        .content-panel {
+            display: none;
+        }
+
+        .content-panel.active {
+            display: block;
+        }
+
+        /* 添加内容表单样式 */
+        .add-content-form {
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .add-content-form h3 {
+            font-family: 'Bubblegum Sans', cursive;
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ffc0cb;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-family: 'Comic Neue', cursive;
+            transition: all 0.3s ease;
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ffc0cb;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-family: 'Comic Neue', cursive;
+            min-height: 100px;
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #ff69b4;
+            box-shadow: 0 0 10px rgba(255, 105, 180, 0.2);
+        }
+
+        .add-btn {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-family: 'Comic Neue', cursive;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .add-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .admin-title {
+                font-size: 2rem;
+            }
+
+            .login-form,
+            .admin-panel {
+                padding: 20px;
+            }
+
+            .wish-item {
+                flex-direction: column;
+            }
+
+            .delete-btn {
+                margin-left: 0;
+                margin-top: 10px;
+                align-self: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <h1 class="admin-title">🎀 愿望后台管理 🎀</h1>
+
+        <!-- 登录表单 -->
+        <div class="login-form" id="loginForm">
+            <h2>请输入管理员密码</h2>
+            <input type="password" id="adminPassword" class="login-input" placeholder="输入密码">
+            <button id="loginBtn" class="login-btn">
+                <i class="fas fa-lock"></i> 登录
+            </button>
+            <div class="login-error" id="loginError">密码错误，请重试</div>
+        </div>
+
+        <!-- 管理面板 -->
+        <div class="admin-panel" id="adminPanel">
+            <div class="admin-header">
+                <h2>私密空间管理</h2>
+                <button id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> 退出登录
+                </button>
+            </div>
+            
+            <!-- 导航标签页 -->
+            <div class="nav-tabs">
+                <button class="tab-btn active" data-tab="wishes">🎀 愿望</button>
+                <button class="tab-btn" data-tab="diaries">📖 日记</button>
+                <button class="tab-btn" data-tab="photos">📷 照片</button>
+                <button class="tab-btn" data-tab="memories">💭 回忆</button>
+            </div>
+
+            <!-- 愿望内容面板 -->
+            <div class="content-panel active" id="wishesPanel">
+                <!-- 添加愿望表单 -->
+                <div class="add-content-form">
+                    <h3>🎀 添加新愿望</h3>
+                    <div class="form-group">
+                        <textarea class="form-textarea" id="newWishText" placeholder="写下你的愿望..." maxlength="200"></textarea>
+                    </div>
+                    <button class="add-btn" onclick="addWish()">✨ 保存愿望</button>
+                </div>
+
+                <!-- 统计信息 -->
+                <div class="stats-panel">
+                    <h3>愿望总数</h3>
+                    <div class="stats-count" id="totalWishes">0</div>
+                </div>
+
+                <!-- 愿望列表 -->
+                <div class="wishes-container">
+                    <div id="wishesList" class="wishes-list">
+                        <div class="empty-state">
+                            <i class="fas fa-star"></i> 还没有保存的愿望
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 日记内容面板 -->
+            <div class="content-panel" id="diariesPanel">
+                <!-- 添加日记表单 -->
+                <div class="add-content-form">
+                    <h3>📖 添加新日记</h3>
+                    <div class="form-group">
+                        <input type="text" class="form-input" id="newDiaryTitle" placeholder="日记标题">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-textarea" id="newDiaryContent" placeholder="写下你的心情..." maxlength="500"></textarea>
+                    </div>
+                    <button class="add-btn" onclick="addDiary()">📝 保存日记</button>
+                </div>
+
+                <!-- 统计信息 -->
+                <div class="stats-panel">
+                    <h3>日记总数</h3>
+                    <div class="stats-count" id="totalDiaries">0</div>
+                </div>
+
+                <!-- 日记列表 -->
+                <div class="wishes-container">
+                    <div id="diariesList" class="wishes-list">
+                        <div class="empty-state">
+                            <i class="fas fa-book"></i> 还没有保存的日记
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 照片内容面板 -->
+            <div class="content-panel" id="photosPanel">
+                <!-- 添加照片表单 -->
+                <div class="add-content-form">
+                    <h3>📷 添加新照片</h3>
+                    <div class="form-group">
+                        <input type="text" class="form-input" id="newPhotoTitle" placeholder="照片标题">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-input" id="newPhotoUrl" placeholder="照片URL">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-textarea" id="newPhotoDescription" placeholder="照片描述..." maxlength="200"></textarea>
+                    </div>
+                    <button class="add-btn" onclick="addPhoto()">🖼️ 保存照片</button>
+                </div>
+
+                <!-- 统计信息 -->
+                <div class="stats-panel">
+                    <h3>照片总数</h3>
+                    <div class="stats-count" id="totalPhotos">0</div>
+                </div>
+
+                <!-- 照片列表 -->
+                <div class="wishes-container">
+                    <div id="photosList" class="wishes-list">
+                        <div class="empty-state">
+                            <i class="fas fa-image"></i> 还没有保存的照片
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 回忆内容面板 -->
+            <div class="content-panel" id="memoriesPanel">
+                <!-- 添加回忆表单 -->
+                <div class="add-content-form">
+                    <h3>💭 添加新回忆</h3>
+                    <div class="form-group">
+                        <input type="text" class="form-input" id="newMemoryTitle" placeholder="回忆标题">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-textarea" id="newMemoryContent" placeholder="写下这段回忆..." maxlength="300"></textarea>
+                    </div>
+                    <button class="add-btn" onclick="addMemory()">💖 保存回忆</button>
+                </div>
+
+                <!-- 统计信息 -->
+                <div class="stats-panel">
+                    <h3>回忆总数</h3>
+                    <div class="stats-count" id="totalMemories">0</div>
+                </div>
+
+                <!-- 回忆列表 -->
+                <div class="wishes-container">
+                    <div id="memoriesList" class="wishes-list">
+                        <div class="empty-state">
+                            <i class="fas fa-heart"></i> 还没有保存的回忆
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 管理员密码（可以修改为更安全的密码）
+        const ADMIN_PASSWORD = 'admin123';
+
+        // DOM元素
+        const loginForm = document.getElementById('loginForm');
+        const adminPanel = document.getElementById('adminPanel');
+        const passwordInput = document.getElementById('adminPassword');
+        const loginBtn = document.getElementById('loginBtn');
+        const loginError = document.getElementById('loginError');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const wishesList = document.getElementById('wishesList');
+        const totalWishes = document.getElementById('totalWishes');
+
+        // 检查登录状态
+        window.addEventListener('load', () => {
+            const isLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
+            if (isLoggedIn) {
+                showAdminPanel();
+            }
+        });
+
+        // 登录验证
+        loginBtn.addEventListener('click', () => {
+            const password = passwordInput.value.trim();
+            
+            if (password === ADMIN_PASSWORD) {
+                // 登录成功
+                localStorage.setItem('adminLoggedIn', 'true');
+                showAdminPanel();
+            } else {
+                // 登录失败
+                loginError.style.display = 'block';
+                passwordInput.value = '';
+                
+                // 3秒后隐藏错误提示
+                setTimeout(() => {
+                    loginError.style.display = 'none';
+                }, 3000);
+            }
+        });
+
+        // 回车键登录
+        passwordInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                loginBtn.click();
+            }
+        });
+
+        // 退出登录
+        logoutBtn.addEventListener('click', () => {
+            localStorage.removeItem('adminLoggedIn');
+            showLoginForm();
+        });
+
+        // 显示登录表单
+        function showLoginForm() {
+            loginForm.style.display = 'block';
+            adminPanel.style.display = 'none';
+            passwordInput.value = '';
+        }
+
+        // 显示管理面板
+        function showAdminPanel() {
+            loginForm.style.display = 'none';
+            adminPanel.style.display = 'block';
+            loadContent('wishes'); // 加载默认内容
+        }
+
+        // 内容加载函数
+        function loadContent(contentType) {
+            switch(contentType) {
+                case 'wishes':
+                    loadWishes();
+                    break;
+                case 'diaries':
+                    loadDiaries();
+                    break;
+                case 'photos':
+                    loadPhotos();
+                    break;
+                case 'memories':
+                    loadMemories();
+                    break;
+            }
+        }
+
+        // 标签切换功能
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const contentPanels = document.querySelectorAll('.content-panel');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetTab = btn.dataset.tab;
+                
+                // 切换按钮激活状态
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // 切换内容面板
+                contentPanels.forEach(panel => {
+                    panel.classList.remove('active');
+                });
+                document.getElementById(targetTab + 'Panel').classList.add('active');
+                
+                // 加载对应内容
+                loadContent(targetTab);
+            });
+        });
+
+        // 加载愿望列表
+        function loadWishes() {
+            try {
+                // 获取保存的愿望
+                const savedWishes = JSON.parse(localStorage.getItem('happyWishes') || '[]');
+                
+                // 更新统计
+                totalWishes.textContent = savedWishes.length;
+                
+                if (savedWishes.length === 0) {
+                    wishesList.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fas fa-star"></i> 还没有保存的愿望
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // 按时间倒序排列（最新的愿望在前面）
+                savedWishes.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                
+
+        // 渲染愿望列表
+                wishesList.innerHTML = savedWishes.map(wish => {
+                    // 格式化日期
+                    const date = new Date(wish.timestamp);
+                    const formattedDate = date.toLocaleString('zh-CN', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    
+                    return `
+                        <div class="wish-item" data-id="${wish.id}">
+                            <div class="wish-content">
+                                <div class="wish-text">${wish.text}</div>
+                                <div class="wish-date">✨ ${formattedDate}</div>
+                            </div>
+                            <button class="delete-btn" onclick="deleteWish(${wish.id})">
+                                <i class="fas fa-trash"></i> 删除
+                            </button>
+                        </div>
+                    `;
+                }).join('');
+            } catch (error) {
+                console.log('加载愿望失败:', error);
+                wishesList.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-exclamation-triangle"></i> 加载愿望失败
+                    </div>
+                `;
+            }
+        }
+
+        // 删除愿望
+        function deleteWish(wishId) {
+            try {
+                // 获取现有愿望
+                let savedWishes = JSON.parse(localStorage.getItem('happyWishes') || '[]');
+                
+                // 过滤掉要删除的愿望
+                savedWishes = savedWishes.filter(wish => wish.id !== wishId);
+                
+                // 保存回localStorage
+                localStorage.setItem('happyWishes', JSON.stringify(savedWishes));
+                
+                // 重新加载愿望列表
+                loadWishes();
+            } catch (error) {
+                console.log('删除愿望失败:', error);
+            }
+        }
+
+        // 添加愿望
+        function addWish() {
+            const wishText = document.getElementById('newWishText').value.trim();
+            if (!wishText) return;
+            
+            try {
+                const savedWishes = JSON.parse(localStorage.getItem('happyWishes') || '[]');
+                const newWish = {
+                    id: Date.now(),
+                    text: wishText,
+                    timestamp: new Date().toISOString()
+                };
+                savedWishes.push(newWish);
+                localStorage.setItem('happyWishes', JSON.stringify(savedWishes));
+                document.getElementById('newWishText').value = '';
+                loadWishes();
+            } catch (error) {
+                console.log('保存愿望失败:', error);
+            }
+        }
+
+        // 日记管理
+        function loadDiaries() {
+            try {
+                const savedDiaries = JSON.parse(localStorage.getItem('happyDiaries') || '[]');
+                const diariesList = document.getElementById('diariesList');
+                const totalDiaries = document.getElementById('totalDiaries');
+                
+                totalDiaries.textContent = savedDiaries.length;
+                
+                if (savedDiaries.length === 0) {
+                    diariesList.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fas fa-book"></i> 还没有保存的日记
+                        </div>
+                    `;
+                    return;
+                }
+                
+                savedDiaries.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                
+                diariesList.innerHTML = savedDiaries.map(diary => {
+                    const date = new Date(diary.timestamp);
+                    const formattedDate = date.toLocaleString('zh-CN', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    
+                    return `
+                        <div class="wish-item" data-id="${diary.id}">
+                            <div class="wish-content">
+                                <div class="wish-text">
+                                    <strong>${diary.title}</strong><br>
+                                    ${diary.content}
+                                </div>
+                                <div class="wish-date">📅 ${formattedDate}</div>
+                            </div>
+                            <button class="delete-btn" onclick="deleteDiary(${diary.id})">
+                                <i class="fas fa-trash"></i> 删除
+                            </button>
+                        </div>
+                    `;
+                }).join('');
+            } catch (error) {
+                console.log('加载日记失败:', error);
+            }
+        }
+
+        function addDiary() {
+            const title = document.getElementById('newDiaryTitle').value.trim();
+            const content = document.getElementById('newDiaryContent').value.trim();
+            if (!title || !content) return;
+            
+            try {
+                const savedDiaries = JSON.parse(localStorage.getItem('happyDiaries') || '[]');
+                const newDiary = {
+                    id: Date.now(),
+                    title: title,
+                    content: content,
+                    timestamp: new Date().toISOString()
+                };
+                savedDiaries.push(newDiary);
+                localStorage.setItem('happyDiaries', JSON.stringify(savedDiaries));
+                document.getElementById('newDiaryTitle').value = '';
+                document.getElementById('newDiaryContent').value = '';
+                loadDiaries();
+            } catch (error) {
+                console.log('保存日记失败:', error);
+            }
+        }
+
+        function deleteDiary(id) {
+            try {
+                let savedDiaries = JSON.parse(localStorage.getItem('happyDiaries') || '[]');
+                savedDiaries = savedDiaries.filter(diary => diary.id !== id);
+                localStorage.setItem('happyDiaries', JSON.stringify(savedDiaries));
+                loadDiaries();
+            } catch (error) {
+                console.log('删除日记失败:', error);
+            }
+        }
+
+        // 照片管理
+        function loadPhotos() {
+            try {
+                const savedPhotos = JSON.parse(localStorage.getItem('happyPhotos') || '[]');
+                const photosList = document.getElementById('photosList');
+                const totalPhotos = document.getElementById('totalPhotos');
+                
+                totalPhotos.textContent = savedPhotos.length;
+                
+                if (savedPhotos.length === 0) {
+                    photosList.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fas fa-image"></i> 还没有保存的照片
+                        </div>
+                    `;
+                    return;
+                }
+                
+                savedPhotos.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                
+                photosList.innerHTML = savedPhotos.map(photo => {
+                    const date = new Date(photo.timestamp);
+                    const formattedDate = date.toLocaleString('zh-CN', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    
+                    return `
+                        <div class="wish-item" data-id="${photo.id}">
+                            <div class="wish-content">
+                                <div class="wish-text">
+                                    <strong>${photo.title}</strong><br>
+                                    ${photo.description ? `<small>${photo.description}</small><br>` : ''}
+                                    <img src="${photo.url}" alt="${photo.title}" style="max-width: 100%; max-height: 200px; object-fit: cover; border-radius: 8px; margin-top: 10px;">
+                                </div>
+                                <div class="wish-date">🖼️ ${formattedDate}</div>
+                            </div>
+                            <button class="delete-btn" onclick="deletePhoto(${photo.id})">
+                                <i class="fas fa-trash"></i> 删除
+                            </button>
+                        </div>
+                    `;
+                }).join('');
+            } catch (error) {
+                console.log('加载照片失败:', error);
+            }
+        }
+
+        function addPhoto() {
+            const title = document.getElementById('newPhotoTitle').value.trim();
+            const url = document.getElementById('newPhotoUrl').value.trim();
+            const description = document.getElementById('newPhotoDescription').value.trim();
+            if (!title || !url) return;
+            
+            try {
+                const savedPhotos = JSON.parse(localStorage.getItem('happyPhotos') || '[]');
+                const newPhoto = {
+                    id: Date.now(),
+                    title: title,
+                    url: url,
+                    description: description,
+                    timestamp: new Date().toISOString()
+                };
+                savedPhotos.push(newPhoto);
+                localStorage.setItem('happyPhotos', JSON.stringify(savedPhotos));
+                document.getElementById('newPhotoTitle').value = '';
+                document.getElementById('newPhotoUrl').value = '';
+                document.getElementById('newPhotoDescription').value = '';
+                loadPhotos();
+            } catch (error) {
+                console.log('保存照片失败:', error);
+            }
+        }
+
+        function deletePhoto(id) {
+            try {
+                let savedPhotos = JSON.parse(localStorage.getItem('happyPhotos') || '[]');
+                savedPhotos = savedPhotos.filter(photo => photo.id !== id);
+                localStorage.setItem('happyPhotos', JSON.stringify(savedPhotos));
+                loadPhotos();
+            } catch (error) {
+                console.log('删除照片失败:', error);
+            }
+        }
+
+        // 回忆管理
+        function loadMemories() {
+            try {
+                const savedMemories = JSON.parse(localStorage.getItem('happyMemories') || '[]');
+                const memoriesList = document.getElementById('memoriesList');
+                const totalMemories = document.getElementById('totalMemories');
+                
+                totalMemories.textContent = savedMemories.length;
+                
+                if (savedMemories.length === 0) {
+                    memoriesList.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fas fa-heart"></i> 还没有保存的回忆
+                        </div>
+                    `;
+                    return;
+                }
+                
+                savedMemories.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                
+                memoriesList.innerHTML = savedMemories.map(memory => {
+                    const date = new Date(memory.timestamp);
+                    const formattedDate = date.toLocaleString('zh-CN', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    
+                    return `
+                        <div class="wish-item" data-id="${memory.id}">
+                            <div class="wish-content">
+                                <div class="wish-text">
+                                    <strong>${memory.title}</strong><br>
+                                    ${memory.content}
+                                </div>
+                                <div class="wish-date">💖 ${formattedDate}</div>
+                            </div>
+                            <button class="delete-btn" onclick="deleteMemory(${memory.id})">
+                                <i class="fas fa-trash"></i> 删除
+                            </button>
+                        </div>
+                    `;
+                }).join('');
+            } catch (error) {
+                console.log('加载回忆失败:', error);
+            }
+        }
+
+        function addMemory() {
+            const title = document.getElementById('newMemoryTitle').value.trim();
+            const content = document.getElementById('newMemoryContent').value.trim();
+            if (!title || !content) return;
+            
+            try {
+                const savedMemories = JSON.parse(localStorage.getItem('happyMemories') || '[]');
+                const newMemory = {
+                    id: Date.now(),
+                    title: title,
+                    content: content,
+                    timestamp: new Date().toISOString()
+                };
+                savedMemories.push(newMemory);
+                localStorage.setItem('happyMemories', JSON.stringify(savedMemories));
+                document.getElementById('newMemoryTitle').value = '';
+                document.getElementById('newMemoryContent').value = '';
+                loadMemories();
+            } catch (error) {
+                console.log('保存回忆失败:', error);
+            }
+        }
+
+        function deleteMemory(id) {
+            try {
+                let savedMemories = JSON.parse(localStorage.getItem('happyMemories') || '[]');
+                savedMemories = savedMemories.filter(memory => memory.id !== id);
+                localStorage.setItem('happyMemories', JSON.stringify(savedMemories));
+                loadMemories();
+            } catch (error) {
+                console.log('删除回忆失败:', error);
+            }
+        }
+    </script>
+</body>
+</html>

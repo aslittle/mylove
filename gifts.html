@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>💌 专属情书 💌</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Comic+Neue:wght@400;700&family=Caveat:wght@400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- 背景音乐 -->
+    <audio id="bgMusic" loop autoplay>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        您的浏览器不支持音频元素。
+    </audio>
+    
+    <!-- 音效 -->
+    <audio id="clickSound">
+        <source src="https://www.soundjay.com/buttons/sounds/button-09.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="popSound">
+        <source src="https://www.soundjay.com/buttons/sounds/button-14.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- 页面加载动画 -->
+    <div id="loader">
+        <div class="loader-content">
+            <div class="heart"></div>
+            <p>加载中...</p>
+        </div>
+    </div>
+    
+    <!-- 导航菜单 -->
+    <nav class="main-nav">
+        <div class="container">
+            <div class="nav-header">
+                <h1 class="nav-title">💌 专属情书</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">🏠 首页</a></li>
+                <li><a href="album.html" class="nav-link">📸 乖乖的相册</a></li>
+                <li><a href="story.html" class="nav-link">📖 我们的故事</a></li>
+                <li><a href="gifts.html" class="nav-link active">💌 专属情书</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- 主内容区域 -->
+    <div id="mainContent" style="display: none;" class="content">
+        <!-- 顶部控制栏 -->
+        <div class="top-controls">
+            <div class="container">
+                <div class="controls">
+                    <button id="musicToggle" class="control-btn">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <button id="soundToggle" class="control-btn">
+                        <i class="fas fa-music"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 情书头部 -->
+        <header id="loveLetterHeader" class="header">
+            <div class="container">
+                <h1 class="header-title">💖 给最爱的乖乖 💖</h1>
+                <p class="header-subtitle">这是我为你准备的专属情书</p>
+            </div>
+        </header>
+        
+        <!-- 情书内容区域 -->
+        <section id="loveLetter" class="section">
+            <div class="container">
+                <div class="letter-container">
+                    <div class="letter">
+                        <div class="letter-header">
+                            <h2 class="section-title">💖 给我最爱的乖乖 💖</h2>
+                        </div>
+                        <div class="letter-content">
+                            <p class="letter-greeting">亲爱的乖乖：</p>
+                            <p>今天是你的生日，我想借此机会，把我心里所有的话都告诉你。</p>
+                            <p>记得我们第一次相遇的那天，阳光洒在你的脸上，你的笑容就像天使一样，瞬间照亮了我的整个世界。从那一刻起，我就知道，你是我要找的那个人。</p>
+                            <p>和你在一起的每一天，都是我生命中最美好的时光。你的温柔、你的善良、你的可爱，都让我深深着迷。</p>
+                            <p>你总是能在我最需要的时候给我鼓励，在我不开心的时候逗我笑。有你在身边，我觉得自己是世界上最幸福的人。</p>
+                            <p>乖乖，我想告诉你，我对你的爱不是一时的冲动，而是一生的承诺。我会永远爱护你、保护你、珍惜你，让你成为世界上最幸福的女孩。</p>
+                            <p>今天是你的生日，我祝你生日快乐，永远开心、永远美丽。愿我们的爱情像美酒一样，越陈越香；像钻石一样，永远闪耀。</p>
+                            <p>我爱你，永远永远！</p>
+                            <p class="letter-closing">爱你的落</p>
+                            <p class="letter-date">2026年1月1日</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 爱的誓言区域 -->
+        <section id="loveVows" class="section">
+            <div class="container">
+                <h2 class="section-title">💕 我的爱的誓言 💕</h2>
+                <div class="vows-container">
+                    <div class="vow-item">
+                        <div class="vow-icon">💍</div>
+                        <p>我会永远对你忠诚，珍惜我们的爱情</p>
+                    </div>
+                    <div class="vow-item">
+                        <div class="vow-icon">❤️</div>
+                        <p>我会每天都让你感受到我的爱和关心</p>
+                    </div>
+                    <div class="vow-item">
+                        <div class="vow-icon">🤗</div>
+                        <p>我会在你需要的时候，永远陪在你身边</p>
+                    </div>
+                    <div class="vow-item">
+                        <div class="vow-icon">😊</div>
+                        <p>我会努力让你每天都开心快乐</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 底部 -->
+        <footer>
+            <div class="container">
+                <p>💖 爱你的每一天 💖</p>
+            </div>
+        </footer>
+    </div>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>💖 我们的相册 💖</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Comic+Neue:wght@400;700&family=Caveat:wght@400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- 背景音乐 -->
+    <audio id="bgMusic" loop autoplay>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        您的浏览器不支持音频元素。
+    </audio>
+    
+    <!-- 音效 -->
+    <audio id="clickSound">
+        <source src="https://www.soundjay.com/buttons/sounds/button-09.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="popSound">
+        <source src="https://www.soundjay.com/buttons/sounds/button-14.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- 页面加载动画 -->
+    <div id="loader">
+        <div class="loader-content">
+            <div class="heart"></div>
+            <p>加载中...</p>
+        </div>
+    </div>
+
+    <!-- 导航菜单 -->
+    <nav class="main-nav">
+        <div class="container">
+            <div class="nav-header">
+                <h1 class="nav-title">📸 乖乖的相册</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">🏠 首页</a></li>
+                <li><a href="album.html" class="nav-link active">📸 乖乖的相册</a></li>
+                <li><a href="story.html" class="nav-link">📖 我们的故事</a></li>
+                <li><a href="gifts.html" class="nav-link">💌 专属情书</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 主内容区域 -->
+    <div id="mainContent" style="display: none;" class="content">
+        <!-- 顶部控制栏 -->
+        <div class="top-controls">
+            <div class="container">
+                <div class="controls">
+                    <button id="musicToggle" class="control-btn">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <button id="soundToggle" class="control-btn">
+                        <i class="fas fa-music"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- 装饰元素 -->
+        <div id="decorations" class="decorations">
+            <!-- 蝴蝶 -->
+            <div class="decoration butterfly butterfly-1">🦋</div>
+            <div class="decoration butterfly butterfly-2">🦋</div>
+            <div class="decoration butterfly butterfly-3">🦋</div>
+            <div class="decoration butterfly butterfly-4">🦋</div>
+            
+            <!-- 星星 -->
+            <div class="decoration star star-1">⭐</div>
+            <div class="decoration star star-2">⭐</div>
+            <div class="decoration star star-3">⭐</div>
+            <div class="decoration star star-4">⭐</div>
+            <div class="decoration star star-5">⭐</div>
+        </div>
+        
+        <!-- 气球 -->
+        <div class="balloons">
+            <div class="balloon balloon-1">🎈</div>
+            <div class="balloon balloon-2">🎈</div>
+            <div class="balloon balloon-3">🎈</div>
+            <div class="balloon balloon-4">🎈</div>
+            <div class="balloon balloon-5">🎈</div>
+        </div>
+        
+        <!-- 相册头部 -->
+        <header id="albumHeader" class="header">
+            <div class="container">
+                <h1 class="header-title">💖 我们的美好回忆 💖</h1>
+                <p class="header-subtitle">每一张照片都记录着我们的幸福时光</p>
+            </div>
+        </header>
+
+        <!-- 相册展示区域 -->
+        <section id="albumGallery" class="section">
+            <div class="container">
+                <div class="gallery album-gallery">
+                    <div class="gallery-item" data-img="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=300&h=300&fit=crop">   
+                        <div class="gallery-overlay">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-img="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&h=300&fit=crop">   
+                        <div class="gallery-overlay">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-img="https://images.unsplash.com/photo-1567529837169-97a204c231e4?w=300&h=300&fit=crop">   
+                        <div class="gallery-overlay">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-img="https://images.unsplash.com/photo-1582791698869-0c0a54315c63?w=300&h=300&fit=crop">   
+                        <div class="gallery-overlay">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-img="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&h=300&fit=crop">   
+                        <div class="gallery-overlay">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-img="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=300&h=300&fit=crop">   
+                        <div class="gallery-overlay">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-img="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=300&h=300&fit=crop">   
+                        <div class="gallery-overlay">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-img="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=300&h=300&fit=crop">   
+                        <div class="gallery-overlay">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-img="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=300&h=300&fit=crop">   
+                        <div class="gallery-overlay">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-img="https://images.unsplash.com/photo-1504253163759-2f6a4303b3f6?w=300&h=300&fit=crop">   
+                        <div class="gallery-overlay">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 相册说明区域 -->
+        <section id="albumNotes" class="section">
+            <div class="container">
+                <div class="letter-container">
+                    <div class="letter">
+                        <div class="letter-header">
+                            <h3>💌 相册感言</h3>
+                        </div>
+                        <div class="letter-content">
+                            <p>亲爱的乖乖，</p>
+                            <p>这些照片记录了你最美的瞬间，每一张都让我心动不已。</p>
+                            <p>你的笑容、你的眼神、你的每一个表情，都是那么美丽动人。</p>
+                            <p>感谢上天让我遇到这么完美的你，我会永远珍惜你、爱护你。</p>
+                            <p>我爱你，永远永远！</p>
+                            <p class="signature">爱你的落</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 许愿互动区域 -->
+        <section id="wishInteractive" class="section">
+            <div class="container">
+                <h2 class="section-title">✨ 许下你的愿望 ✨</h2>
+                <div class="wish-container">
+                    <div class="wish-input-area">
+                        <textarea id="wishInput" placeholder="乖乖，在这里写下你的愿望..." maxlength="100"></textarea>
+                        <button id="wishSubmit" class="wish-btn">
+                            <i class="fas fa-star"></i> 发送愿望
+                        </button>
+                        <div id="wishCount" class="wish-count">0/100</div>
+                    </div>
+                    <div id="wishDisplay" class="wish-display">
+                        <div class="wish-message" id="wishMessage"></div>
+                        <div id="wishStars" class="wish-stars"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 照片上传区域 -->
+        <section id="photoUpload" class="section">
+            <div class="container">
+                <h2 class="section-title">📷 上传新照片 📷</h2>
+                <div class="upload-form-container">
+                    <form id="photoUploadForm" class="upload-form">
+                        <div class="form-group">
+                            <label for="photoTitle">照片标题</label>
+                            <input type="text" id="photoTitle" name="photoTitle" placeholder="给照片起个好听的名字..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="photoFile">选择照片</label>
+                            <label for="photoFile" class="file-upload-label">
+                                <i class="fas fa-image"></i> 选择照片文件
+                            </label>
+                            <input type="file" id="photoFile" name="photoFile" accept="image/*" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="photoDescription">照片描述</label>
+                            <textarea id="photoDescription" name="photoDescription" placeholder="写下关于这张照片的故事..." rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="upload-btn">
+                                <i class="fas fa-upload"></i> 上传照片
+                            </button>
+                        </div>
+                    </form>
+                    <div id="photoPreview" class="photo-preview">
+                        <img id="previewImage" src="" alt="照片预览">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 底部 -->
+        <footer>
+            <div class="container">
+                <p>💞 爱你的每一天 💞</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 图片查看器 -->
+    <div id="imageViewer" class="image-viewer">
+        <span class="close">&times;</span>
+        <img class="viewer-content" id="viewerImage">
+        <div class="caption-container">
+            <p id="caption"></p>
+        </div>
+    </div>
+
+    <!-- 雪花效果 -->
+    <div id="snowflakes"></div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // 照片上传功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const photoFileInput = document.getElementById('photoFile');
+            const previewImage = document.getElementById('previewImage');
+            const photoPreview = document.getElementById('photoPreview');
+            const photoUploadForm = document.getElementById('photoUploadForm');
+
+            // 确保所有必要的元素都存在
+            if (!photoFileInput || !previewImage || !photoPreview || !photoUploadForm) {
+                return;
+            }
+
+            // 照片预览
+            photoFileInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        if (previewImage) {
+                            previewImage.src = e.target.result;
+                        }
+                        if (photoPreview) {
+                            photoPreview.classList.add('show');
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    if (photoPreview) {
+                        photoPreview.classList.remove('show');
+                    }
+                }
+            });
+
+            // 表单提交
+            photoUploadForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const photoTitleInput = document.getElementById('photoTitle');
+                const photoDescriptionInput = document.getElementById('photoDescription');
+                
+                if (!photoTitleInput || !photoDescriptionInput) {
+                    return;
+                }
+                
+                const photoTitle = photoTitleInput.value.trim();
+                const photoDescription = photoDescriptionInput.value.trim();
+                const photoFile = photoFileInput.files[0];
+
+                if (!photoTitle || !photoFile) {
+                    alert('请填写照片标题并选择照片！');
+                    return;
+                }
+
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const photoData = {
+                        id: Date.now(),
+                        title: photoTitle,
+                        description: photoDescription,
+                        image: e.target.result,
+                        timestamp: new Date().toISOString()
+                    };
+
+                    // 保存到localStorage
+                    saveToLocalStorage('happyPhotos', photoData);
+                    
+                    // 清空表单
+                    photoUploadForm.reset();
+                    if (photoPreview) {
+                        photoPreview.classList.remove('show');
+                    }
+                    
+                    // 刷新相册显示
+                    loadPhotos();
+                    
+                    // 显示成功消息
+                    showSuccessMessage('照片上传成功！');
+                };
+
+                reader.readAsDataURL(photoFile);
+            });
+
+            // 保存到localStorage
+            function saveToLocalStorage(key, data) {
+                try {
+                    const savedData = JSON.parse(localStorage.getItem(key) || '[]');
+                    savedData.push(data);
+                    localStorage.setItem(key, JSON.stringify(savedData));
+                } catch (error) {
+                    console.error('保存失败:', error);
+                    alert('保存失败，请稍后重试！');
+                }
+            }
+
+            // 显示成功消息
+            function showSuccessMessage(message) {
+                const successDiv = document.createElement('div');
+                successDiv.className = 'success-message';
+                successDiv.textContent = message;
+                document.body.appendChild(successDiv);
+                
+                // 3秒后移除
+                setTimeout(() => {
+                    successDiv.remove();
+                }, 3000);
+            }
+
+            // 加载照片到相册
+            function loadPhotos() {
+                const gallery = document.querySelector('.gallery.album-gallery');
+                if (!gallery) {
+                    return;
+                }
+                
+                const savedPhotos = JSON.parse(localStorage.getItem('happyPhotos') || '[]');
+                
+                // 清空现有照片
+                gallery.innerHTML = '';
+                
+                // 显示默认照片
+                const defaultPhotos = [
+                    "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=300&h=300&fit=crop",
+                    "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&h=300&fit=crop",
+                    "https://images.unsplash.com/photo-1567529837169-97a204c231e4?w=300&h=300&fit=crop",
+                    "https://images.unsplash.com/photo-1582791698869-0c0a54315c63?w=300&h=300&fit=crop",
+                    "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&h=300&fit=crop",
+                    "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=300&h=300&fit=crop",
+                    "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=300&h=300&fit=crop",
+                    "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=300&h=300&fit=crop",
+                    "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=300&h=300&fit=crop",
+                    "https://images.unsplash.com/photo-1504253163759-2f6a4303b3f6?w=300&h=300&fit=crop"
+                ];
+                
+                // 显示默认照片
+                defaultPhotos.forEach((imgSrc, index) => {
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'gallery-item';
+                    galleryItem.setAttribute('data-img', imgSrc);
+                    galleryItem.innerHTML = `
+                        <div class="gallery-overlay">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    `;
+                    gallery.appendChild(galleryItem);
+                });
+                
+                // 添加用户上传的照片
+                savedPhotos.forEach(photo => {
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'gallery-item';
+                    galleryItem.setAttribute('data-img', photo.image);
+                    galleryItem.setAttribute('data-title', photo.title);
+                    galleryItem.setAttribute('data-description', photo.description);
+                    galleryItem.innerHTML = `
+                        <div class="gallery-overlay">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    `;
+                    gallery.appendChild(galleryItem);
+                });
+            }
+
+            // 初始加载照片
+            loadPhotos();
+        });
+    </script>
+</body>
+</html>

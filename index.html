@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>🎂 生日快乐，我的乖乖！🎂</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Comic+Neue:wght@400;700&family=Caveat:wght@400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- 背景音乐 -->
+    <audio id="bgMusic" loop autoplay>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        您的浏览器不支持音频元素。
+    </audio>
+    
+    <!-- 音效 -->
+    <audio id="clickSound">
+        <source src="https://www.soundjay.com/buttons/sounds/button-09.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="popSound">
+        <source src="https://www.soundjay.com/buttons/sounds/button-14.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- 页面加载动画 -->
+    <div id="loader">
+        <div class="loader-content">
+            <div class="heart"></div>
+            <p>加载中...</p>
+        </div>
+    </div>
+    
+    <!-- 导航菜单 -->
+    <nav class="main-nav">
+        <div class="container">
+            <div class="nav-header">
+                <h1 class="nav-title">🎂 生日快乐，我的乖乖！🎂</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">🏠 首页</a></li>
+                <li><a href="album.html" class="nav-link">📸 乖乖的相册</a></li>
+                <li><a href="story.html" class="nav-link">📖 我们的故事</a></li>
+                <li><a href="gifts.html" class="nav-link">💌 专属情书</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- 主内容区域 -->
+    <div id="mainContent" style="display: none;" class="content">
+        <!-- 顶部控制栏 -->
+        <div class="top-controls">
+            <div class="container">
+                <div class="controls">
+                    <button id="musicToggle" class="control-btn">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <button id="soundToggle" class="control-btn">
+                        <i class="fas fa-music"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 生日祝福区域 -->
+        <section id="birthdayWish" class="section">
+            <div class="container">
+                <div class="wish-content">
+                    <div class="wish-text">
+                        <h2>亲爱的乖乖：</h2>
+                        <p>今天是你的生日，我想对你说...</p>
+                        <div class="surprise-btn" id="surpriseBtn">
+                            <span>点击拆礼物 🎁</span>
+                        </div>
+                    </div>
+                    <div class="wish-image">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1183/1183812.png" alt="爱心" class="heart-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 图片展示区域 -->
+        <section id="photoGallery" class="section">
+            <div class="container">
+                <h2 class="section-title">💖 我们的美好回忆 💖</h2>
+                <div class="gallery">
+                    <div class="gallery-item" data-img="https://images.unsplash.com/photo-1567529837169-97a204c231e4?w=300&h=300&fit=crop">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-img="https://images.unsplash.com/photo-1578435953595-2d435477132a?w=300&h=300&fit=crop">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-img="https://images.unsplash.com/photo-1612532068932-35128366995b?w=300&h=300&fit=crop">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-img="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=300&h=300&fit=crop">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-img="https://images.unsplash.com/photo-1513258496099-48168024aec0?w=300&h=300&fit=crop">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-img="https://images.unsplash.com/photo-1582791698869-0c0a54315c63?w=300&h=300&fit=crop">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 情书区域 -->
+        <section id="loveLetter" class="section">
+            <div class="container">
+                <div class="letter-container">
+                    <div class="letter">
+                        <div class="letter-header">
+                            <h3>给我最爱的乖乖</h3>
+                        </div>
+                        <div class="letter-content">
+                            <p>乖乖，</p>
+                            <p>今天是你的生日，我想借此机会告诉你，你是我生命中最美好的礼物。</p>
+                            <p>每一个与你相处的瞬间，都让我感到无比幸福和幸运。</p>
+                            <p>你是我前进的动力，是我疲惫时的港湾，是我快乐的源泉。</p>
+                            <p>愿你的每一天都充满阳光和笑容，愿所有的美好都围绕着你。</p>
+                            <p>我爱你，永远永远！</p>
+                            <p class="signature">爱你的落</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 互动区域 -->
+        <section id="interaction" class="section">
+            <div class="container">
+                <h2 class="section-title">💝 互动小惊喜 💝</h2>
+                <div class="interaction-content">
+                    <div class="heart-button" id="heartButton">
+                        <i class="fas fa-heart"></i>
+                        <span id="heartCount">0</span>
+                    </div>
+                    <p class="interaction-text">点击爱心，给我你的爱 ❤️</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 许愿互动区域 -->
+        <section id="wishInteractive" class="section">
+            <div class="container">
+                <h2 class="section-title">✨ 许下你的愿望 ✨</h2>
+                <div class="wish-container">
+                    <div class="wish-input-area">
+                        <textarea id="wishInput" placeholder="乖乖，在这里写下你的愿望..." maxlength="100"></textarea>
+                        <button id="wishSubmit" class="wish-btn">
+                            <i class="fas fa-star"></i> 发送愿望
+                        </button>
+                        <div id="wishCount" class="wish-count">0/100</div>
+                    </div>
+                    <div id="wishDisplay" class="wish-display">
+                        <div class="wish-message" id="wishMessage"></div>
+                        <div id="wishStars" class="wish-stars"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 底部 -->
+        <footer>
+            <div class="container">
+                <p>💖 爱你的每一天 💖</p>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- 图片查看器 -->
+    <div id="imageViewer" class="image-viewer">
+        <span class="close">&times;</span>
+        <img class="viewer-content" id="viewerImage">
+        <div class="caption-container">
+            <p id="caption"></p>
+        </div>
+    </div>
+    
+    <!-- 惊喜弹窗 -->
+    <div id="surpriseModal" class="modal">
+        <div class="modal-content">
+            <!-- 基础装饰 -->
+            <div class="modal-decoration top-left">✨</div>
+            <div class="modal-decoration top-right">🎀</div>
+            <div class="modal-decoration bottom-left">🎁</div>
+            <div class="modal-decoration bottom-right">❤️</div>
+            
+            <!-- 额外的星星装饰 -->
+            <div class="modal-decoration star star-1">⭐</div>
+            <div class="modal-decoration star star-2">⭐</div>
+            <div class="modal-decoration star star-3">⭐</div>
+            <div class="modal-decoration star star-4">⭐</div>
+            <div class="modal-decoration star star-5">⭐</div>
+            
+            <!-- 蝴蝶装饰 -->
+            <div class="modal-decoration butterfly butterfly-1">🦋</div>
+            <div class="modal-decoration butterfly butterfly-2">🦋</div>
+            
+            <span class="modal-close">&times;</span>
+            <h2>🎉 生日快乐，我的小宝贝！🎉</h2>
+            <div class="modal-image">
+                <img src="https://cdn-icons-png.flaticon.com/512/3242/3242381.png" alt="生日蛋糕">
+            </div>
+            <div class="modal-message">
+                <div class="modal-text greeting">亲爱的乖乖：</div>
+                <div class="modal-text wish">今天是属于你的特别日子，我有好多好多话想对你说：</div>
+                <div class="modal-text highlight">你是我生命中最最珍贵的礼物，</div>
+                <div class="modal-text highlight">从见到你的第一眼起，我的心就被你完全占据了。</div>
+                <div class="modal-text memory">记得第一次见面时，你穿着那件浅蓝色的裙子，</div>
+                <div class="modal-text memory">笑起来眼睛弯成月牙的样子，让我至今都难以忘怀。</div>
+                <div class="modal-text memory">还有我们一起在海边看日出的那个清晨，</div>
+                <div class="modal-text memory">你靠在我肩膀上，说要永远和我在一起的模样，</div>
+                <div class="modal-text memory">是我生命中最温暖的画面。</div>
+                <div class="modal-text memory">那些一起熬夜追剧的夜晚，一起分享一杯奶茶的午后，</div>
+                <div class="modal-text memory">甚至是一起为小事吵架又很快和好的时光，</div>
+                <div class="modal-text memory">现在想起都觉得无比珍贵。</div>
+                <div class="modal-text compliment">我喜欢你笑起来的样子，喜欢你认真工作的模样，</div>
+                <div class="modal-text compliment">喜欢你偶尔撒娇的可爱，喜欢你为我着想的温柔，</div>
+                <div class="modal-text compliment">你的一切，都让我深深着迷。</div>
+                <div class="modal-text future">未来的路还很长很长，</div>
+                <div class="modal-text future">我想和你一起去看遍世界的每一个角落，</div>
+                <div class="modal-text future">一起吃遍所有好吃的东西，</div>
+                <div class="modal-text future">一起养一只可爱的小猫或小狗，</div>
+                <div class="modal-text future">一起慢慢变老，直到我们都白发苍苍。</div>
+                <div class="modal-text blessing">在这个特别的日子里，</div>
+                <div class="modal-text blessing">我希望你能永远保持这份纯真和快乐，</div>
+                <div class="modal-text blessing">希望所有的烦恼都远离你，</div>
+                <div class="modal-text blessing">希望你的每一天都充满阳光和惊喜。</div>
+                <div class="modal-text love">乖乖，生日快乐！</div>
+                <div class="modal-text love">我会一直陪伴在你身边，</div>
+                <div class="modal-text love">爱你，保护你，珍惜你，</div>
+                <div class="modal-text love">直到永远，永远！❤️</div>
+            </div>
+            <div class="modal-interaction">
+                <button class="heart-button modal-heart" id="modalHeartButton">
+                    <i class="fas fa-heart"></i>
+                    <span class="modal-heart-count" id="modalHeartCount">0</span>
+                </button>
+                <p class="interaction-text">点击爱心，接收我的爱 💝</p>
+            </div>
+            <div class="balloons">
+                <div class="balloon"></div>
+                <div class="balloon"></div>
+                <div class="balloon"></div>
+                <div class="balloon"></div>
+                <div class="balloon"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 雪花效果 -->
+    <div id="snowflakes"></div>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>💖 我们的故事 💖</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Comic+Neue:wght@400;700&family=Caveat:wght@400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- 背景音乐 -->
+    <audio id="bgMusic" loop autoplay>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        您的浏览器不支持音频元素。
+    </audio>
+    
+    <!-- 音效 -->
+    <audio id="clickSound">
+        <source src="https://www.soundjay.com/buttons/sounds/button-09.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="popSound">
+        <source src="https://www.soundjay.com/buttons/sounds/button-14.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- 页面加载动画 -->
+    <div id="loader">
+        <div class="loader-content">
+            <div class="heart"></div>
+            <p>加载中...</p>
+        </div>
+    </div>
+
+    <!-- 导航菜单 -->
+    <nav class="main-nav">
+        <div class="container">
+            <div class="nav-header">
+                <h1 class="nav-title">📖 我们的故事</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">🏠 首页</a></li>
+                <li><a href="album.html" class="nav-link">📸 乖乖的相册</a></li>
+                <li><a href="story.html" class="nav-link active">📖 我们的故事</a></li>
+                <li><a href="gifts.html" class="nav-link">💌 专属情书</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 主内容区域 -->
+    <div id="mainContent" style="display: none;" class="content">
+        <!-- 顶部控制栏 -->
+        <div class="top-controls">
+            <div class="container">
+                <div class="controls">
+                    <button id="musicToggle" class="control-btn">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <button id="soundToggle" class="control-btn">
+                        <i class="fas fa-music"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- 故事头部 -->
+        <header id="storyHeader" class="header">
+            <div class="container">
+                <h1 class="header-title">💖 我们的浪漫之旅 💖</h1>
+                <p class="header-subtitle">从相遇、相知到相爱，每一步都充满了幸福</p>
+            </div>
+        </header>
+
+        <!-- 时间线区域 -->
+        <section id="timeline" class="section">
+            <div class="container">
+                <h2 class="section-title">⏳ 我们的时间线 ⏳</h2>
+                <div class="timeline-container">
+                    <!-- 时间线项目1 -->
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <div class="timeline-image">
+                                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=200&h=200&fit=crop" alt="初次相遇">                            </div>
+                            <h3>初次相遇 💘</h3>
+                            <p class="timeline-date">2023年2月14日</p>
+                            <p>在那个浪漫的情人节，我们在咖啡馆偶然相遇。你的微笑像阳光一样照亮了我的心房，那一刻我就知道，你是我要找的人。</p>
+                        </div>
+                    </div>
+
+                    <!-- 时间线项目2 -->
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <div class="timeline-image">
+                                <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=200&h=200&fit=crop" alt="第一次约会">                            </div>
+                            <h3>第一次约会 💑</h3>
+                            <p class="timeline-date">2023年3月20日</p>
+                            <p>我们一起去了游乐园，坐了旋转木马，吃了冰淇淋，还一起看了日落。那一天，我们有说不完的话，时间过得特别快。</p>   
+                        </div>
+                    </div>
+
+                    <!-- 时间线项目3 -->
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <div class="timeline-image">
+                                <img src="https://images.unsplash.com/photo-1511997676229-9fad4899b184?w=200&h=200&fit=crop" alt="确认关系">  
+                            </div>
+                            <h3>确认关系 💖</h3>
+                            <p class="timeline-date">2023年4月1日</p>
+                            <p>虽然是愚人节，但我对你的感情是认真的。我鼓起勇气向你表白，你微笑着答应了。那一刻，我觉得自己是世界上最幸福的人 
+。</p>
+                        </div>
+                    </div>
+
+                    <!-- 时间线项目4 -->
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <div class="timeline-image">
+                                <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=200&h=200&fit=crop" alt="第一次旅行">                            </div>
+                            <h3>第一次旅行 ✈️</h3>
+                            <p class="timeline-date">2023年5月1日</p>
+                            <p>我们一起去了海边，看着海浪拍打着沙滩，听着海风的声音。晚上，我们一起看星星，许下了永远在一起的愿望。</p>       
+                        </div>
+                    </div>
+
+                    <!-- 时间线项目5 -->
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <div class="timeline-image">
+                                <img src="https://images.unsplash.com/photo-1488462237308-ecaa28b729d7?w=200&h=200&fit=crop" alt="第一个情人节
+">
+                            </div>
+                            <h3>第一个情人节 💝</h3>
+                            <p class="timeline-date">2024年2月14日</p>
+                            <p>我们一起度过了第一个情人节，我送了你一束玫瑰花和一份精心准备的礼物。你说，这是你收到的最特别的礼物。</p>       
+                        </div>
+                    </div>
+
+                    <!-- 时间线项目6 -->
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <div class="timeline-image">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&h=300&fit=crop" alt="你的生日">  
+                            </div>
+                            <h3>你的生日 🎂</h3>
+                            <p class="timeline-date">今天</p>
+                            <p>今天是你的生日，我想告诉你，和你在一起的每一天都是幸福的。我希望我们能一起度过很多很多个生日，一起创造更多美好 
+的回忆。</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 用户添加的回忆会显示在这里 -->
+                    <div id="userMemories"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 爱的誓言区域 -->
+        <section id="loveVows" class="section">
+            <div class="container">
+                <div class="vows-container">
+                    <h3 class="vows-title">💍 爱的誓言 💍</h3>
+                    <div class="vows-content">
+                        <p>我承诺，无论顺境还是逆境，无论富裕还是贫穷，无论健康还是疾病，我都会永远爱你，珍惜你，保护你。</p>
+                        <p>我会陪你一起看日出日落，一起经历人生的喜怒哀乐，一起慢慢变老。</p>
+                        <p>你是我生命中最重要的人，是我的一切。我爱你，直到永远！</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 添加回忆区域 -->
+        <section id="addMemory" class="section">
+            <div class="container">
+                <h2 class="section-title">📝 记录新回忆 📝</h2>
+                <div class="memory-form-container">
+                    <form id="memoryForm" class="memory-form">
+                        <div class="form-group">
+                            <label for="memoryTitle">回忆标题</label>
+                            <input type="text" id="memoryTitle" name="memoryTitle" placeholder="给回忆起个好听的名字..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="memoryContent">回忆内容</label>
+                            <textarea id="memoryContent" name="memoryContent" placeholder="写下你想要记录的回忆..." rows="5" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="memoryDate">回忆日期</label>
+                            <input type="date" id="memoryDate" name="memoryDate" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="memory-btn">
+                                <i class="fas fa-save"></i> 保存回忆
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 底部 -->
+        <footer>
+            <div class="container">
+                <p>💞 爱你的每一天 💞</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 雪花效果 -->
+    <div id="snowflakes"></div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // 记回忆功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const memoryForm = document.getElementById('memoryForm');
+            const userMemories = document.getElementById('userMemories');
+
+            // 表单提交
+            memoryForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const memoryTitle = document.getElementById('memoryTitle').value.trim();
+                const memoryContent = document.getElementById('memoryContent').value.trim();
+                const memoryDate = document.getElementById('memoryDate').value;
+
+                if (!memoryTitle || !memoryContent || !memoryDate) {
+                    alert('请填写完整的回忆内容！');
+                    return;
+                }
+
+                const memoryData = {
+                    id: Date.now(),
+                    title: memoryTitle,
+                    content: memoryContent,
+                    date: memoryDate,
+                    timestamp: new Date().toISOString()
+                };
+
+                // 保存到localStorage
+                saveToLocalStorage('happyMemories', memoryData);
+                
+                // 清空表单
+                memoryForm.reset();
+                
+                // 刷新回忆显示
+                loadMemories();
+                
+                // 显示成功消息
+                showSuccessMessage('回忆保存成功！');
+            });
+
+            // 保存到localStorage
+            function saveToLocalStorage(key, data) {
+                try {
+                    const savedData = JSON.parse(localStorage.getItem(key) || '[]');
+                    savedData.push(data);
+                    localStorage.setItem(key, JSON.stringify(savedData));
+                } catch (error) {
+                    console.error('保存失败:', error);
+                    alert('保存失败，请稍后重试！');
+                }
+            }
+
+            // 显示成功消息
+            function showSuccessMessage(message) {
+                const successDiv = document.createElement('div');
+                successDiv.className = 'success-message';
+                successDiv.textContent = message;
+                document.body.appendChild(successDiv);
+                
+                // 添加CSS样式
+                successDiv.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: #4CAF50;
+                    color: white;
+                    padding: 15px 20px;
+                    border-radius: 5px;
+                    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+                    z-index: 1000;
+                    animation: slideIn 0.3s ease-out;
+                `;
+                
+                // 添加动画
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes slideIn {
+                        from {
+                            transform: translateX(100%);
+                            opacity: 0;
+                        }
+                        to {
+                            transform: translateX(0);
+                            opacity: 1;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                // 3秒后移除
+                setTimeout(() => {
+                    successDiv.remove();
+                    style.remove();
+                }, 3000);
+            }
+
+            // 加载回忆到时间线
+            function loadMemories() {
+                const savedMemories = JSON.parse(localStorage.getItem('happyMemories') || '[]');
+                
+                // 清空现有回忆
+                userMemories.innerHTML = '';
+                
+                // 按日期排序回忆
+                savedMemories.sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                // 添加用户回忆
+                savedMemories.forEach((memory, index) => {
+                    const timelineItem = document.createElement('div');
+                    timelineItem.className = `timeline-item ${index % 2 === 0 ? 'right' : 'left'}`;
+                    
+                    // 格式化日期
+                    const formattedDate = new Date(memory.date).toLocaleDateString('zh-CN', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                    
+                    timelineItem.innerHTML = `
+                        <div class="timeline-content">
+                            <div class="timeline-image">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop" alt="${memory.title}">
+                            </div>
+                            <h3>${memory.title} 💖</h3>
+                            <p class="timeline-date">${formattedDate}</p>
+                            <p>${memory.content}</p>
+                        </div>
+                    `;
+                    
+                    userMemories.appendChild(timelineItem);
+                });
+            }
+
+            // 初始加载回忆
+            loadMemories();
+        });
+    </script>
+</body>
+</html>
